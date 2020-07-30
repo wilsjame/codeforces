@@ -1,32 +1,41 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 int main() {
-    int a, b, c, max = 0;
-    cin >> a >> b >> c;
+    int a1, a2, a3;
+    cin >> a1 >> a2 >> a3;
 
-    for (int day = 0; day < 7; day++){
-        int curr = day, local_a = a, local_b = b, local_c = c, local_max = 0;
+    int full = min({a1 / 3, a2 / 2, a3 / 2});
+     
+    a1 -= full * 3;
+    a2 -= full * 2;
+    a3 -= full * 2;
+    full *= 7;
+
+    vector<int> a = {a1, a2, a3};
+    vector<int> w = {1, 2, 3, 1, 3, 2, 1};
+
+    int res = full;
+    for (int day = 0; day < 7; day++) {
+        vector<int> b = a;
+        int cur = day, add = 0;
 
         while (1) {
-            if (curr == 0 || curr == 3 || curr == 6) {
-                if (local_a-- == 0) break;
+            if (b[w[cur] - 1] == 0) {
+                break;
             }
-            else if (curr == 1 || curr == 5) {
-                if (local_b-- == 0) break;
+            else {
+                b[w[cur] - 1]--;
             }
-            else if (curr == 2 || curr == 4) {
-                if (local_c-- == 0) break;
-            }
-            curr == 6 ? curr = 0 : curr++;
-            local_max++;
-        }
+            add++;
+            cur = (cur + 1) % 7; 
 
-        if (local_max > max) {
-            max = local_max;
+            res = max(res, full + add);
         }
 
     }
-    cout << max << endl;
+    cout << res << endl;
 
     return 0;
 }
