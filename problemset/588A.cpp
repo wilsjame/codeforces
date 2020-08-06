@@ -6,21 +6,15 @@ int main() {
     cin >> n;
     vector<pair<int, int>> a(n);
 
+    int res = 0;
+    int price = INT_MAX;
     for (int i = 0; i < n; i++) {
         pair<int, int> p;
         cin >> p.first >> p.second;
         a[i] = p;
-    }
 
-    int res = 0;
-    for (int i = 0; i < a.size();) {
-        res += a[i].first * a[i].second;
-        int next = 1;
-        while (a[i].second <= a[i + next].second && i + next < a.size()) {
-                res += a[i].second * a[i + next].first;
-                next++;
-        }
-        i += next;
+        price = min(price, a[i].second);
+        res += price * a[i].first;
     }
     cout << res << endl;
 
