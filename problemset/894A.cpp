@@ -2,10 +2,24 @@
 #include <string>
 using namespace std;
 int main () {
-    int ans = 0;
+    int q = 0, qa = 0, ans = 0;
     string s;
     cin >> s;
 
+    for (int i = 0; i< s.size(); i++) {
+        if (s[i] == 'Q') {
+            q++;
+            ans += qa;
+        }
+        if (s[i] == 'A') {
+            qa += q;
+        }
+    }
+    cout << ans << endl;
+
+    
+    // O(n^3)
+    /*
     for (int i = 0; i < s.size(); i++) {
         if (s[i] == 'Q') {
             for (int j = i + 1; j < s.size(); j++) {
@@ -20,6 +34,7 @@ int main () {
         }
     }
     cout << ans << endl;
+    */
 
     return 0;
 }
