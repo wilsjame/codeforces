@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <algorithm>
 using namespace std;
 int main() {
     int t;
@@ -16,29 +16,22 @@ int main() {
             }
         }
 
-        bool greedy; // prefer 1 x 2 tiles
-        int s = 0, d = 0, c = 0;
-        2 * x > y ? greedy = true : greedy = false;
+        int r = 0, c = 0;
+        y = min(2 * x, y); // greedy
 
         for (int i = 0; i < n; i++) {
-            int strk = 0;
             for (int j = 0; j < m; j++) {
                 if (a[i][j] == '.') {
-                    strk++;
-                    s++;
-                    if (strk == 2) {
-                        d++;
-                        s -= 2;
-                        strk = 0;
-                    }
+                    r++;
                 }
-                else if (a[i][j] == '*') {
-                    strk = 0;
+                else {
+                    c += (r / 2) * y + (r % 2) * x;
+                    r = 0;
                 }
             }
+            c += (r / 2) * y + (r % 2) * x;
+            r = 0;
         }
-        //cerr << greedy << " " << s << " " << d << endl;
-        greedy ? c = s * x + d * y : c = (s + d * 2) * x;
         cout << c << endl;
     }
         
