@@ -9,7 +9,7 @@ int main() {
         int n;
         cin >> n >> s;
         int idx = 0;
-        for (int i = 0, j = n; i < j && j <= 2 * n  -1; i++, j++) {
+        for (int i = 0, j = n; i < j && j <= 2 * n - 1; i++, j++) {
             /*
             cerr << i << " " << j << endl;
             for (int k = i; k < j; k++) {
