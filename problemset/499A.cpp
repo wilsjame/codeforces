@@ -5,9 +5,10 @@ int main() {
     int n, x, t = 0;
     cin >> n >> x;
     int l[n], r[n], s = 1;
-    // greedy
     for(int i = 0; i < n; i++) {
         cin >> l[i] >> r[i];
+        // greedy: skip as close to the next 
+        // starting minute without going over
         while (s + x <= l[i]) {
             s += x;
         }
