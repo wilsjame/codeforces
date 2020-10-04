@@ -7,7 +7,7 @@ int main() {
     // count number of 1 bits
     while (x) {
         cnt += x&1;
-        x = x>>1;
+        x >>= 1;
     }
     cout << cnt;
 
