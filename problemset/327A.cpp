@@ -14,27 +14,14 @@ int main() {
     // window sizes [1, N]
     int best = 0;
     for (int start = 0; start < N; start++) {
-        //cerr << "start " << start << endl;
         for (int window = 1; window <= N; window++) {
             int bits = 0;
-            // bits left of window
-            for (int i = 0; i < start; i++) {
-                //cerr << A[i] << "-";
+            for (int i = 0; i < start; i++) // left of window
                 bits += A[i];
-            }
-            // bits in window
-            //cerr << "|";
-            for (int i = start; i < min(start + window, N) ; i++) {
-                //cerr << A[i] << "-";
+            for (int i = start; i < min(start + window, N) ; i++) // in window
                 bits += 1 - A[i];
-            }
-            //cerr << "|";
-            // bits right of window
-            for (int i = min(N, start + window); i < N; i++) {
-                //cerr << A[i] << "-";
+            for (int i = min(N, start + window); i < N; i++) // right of window
                 bits += A[i];
-            }
-            //cerr << endl;
             best = max(bits, best);
         } 
     }
