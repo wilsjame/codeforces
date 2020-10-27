@@ -3,21 +3,14 @@
 using namespace std;
 
 int main() {
-    int c, v, v_mx, a, l;
-    cin >> c >> v >> v_mx >> a >> l;
-    int d, cnt = 0;
-    for (d = 1; cnt < c; d++) {
-        if (d == 1) {
-            cnt += v;
-            v = min(v_mx, v + a);
-        }
-        else {
-            v -= l;
-            cnt += v;
-            v = min(v_mx, v + a + l);
-        }
-        if (cnt >= c)
-            break;
+    int c, v0, v1, a, l;
+    cin >> c >> v0 >> v1 >> a >> l;
+
+    int d = 1, cnt = v0;
+    while (cnt < c) {
+        v0 = min(v1, v0 + a);
+        cnt += v0 - l;
+        d++;
     }
     cout << d;
 
