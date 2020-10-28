@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 using namespace std;
 
 int main() {
@@ -10,26 +11,11 @@ int main() {
     for (auto &a : A) 
         cin >> a;
 
-    int ans = 105;
-    // ignore houses
+    int ans = (int)1e4 + 5;
     for (int i = 0; i < n; i++) 
-        if (A[i] > k)
-            A[i] = 0;
-    // houses to the right
-    for (int d = 0, i = m - 1; i < n; i++, d++) {
-        if (A[i] > 0) {
-            ans = d;
-            break;
-        }
-    }
-    // houses to the left
-    for (int d = 0, i = m - 1; i >= 0; i--, d++) {
-        if (A[i] > 0) {
-            ans = min(ans, d);
-            break;
-        }
-    }
-    cout << ans * 10;
+        if (A[i] <= k && A[i] != 0)
+            ans = min(ans, abs(m - (i + 1)) * 10);
+    cout << ans;
 
     return 0;
 }
