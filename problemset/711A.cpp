@@ -20,14 +20,7 @@ int main() {
             c = d = '+';
             found = true;
         }
-        //cerr << a + b + '|' + c + d << endl;; 
-        string s ;
-        s+=a;
-        s+=b;
-        s+='|';
-        s+=c;
-        s+=d;
-        A[i]=s;
+        A[i]= string() + a + b + '|' + c + d;
     }
     cout << (found ? "YES\n" : "NO\n");
     if (found) {
